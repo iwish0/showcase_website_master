@@ -1,22 +1,65 @@
 $(document).ready(function(){
-	var imgLeftSide=$('.img-left-slide');
-	var imgRightSide=$('.img-right-slide');
+	var showCaseImgLeftSide=$('.showcase .img-left-slide');
+	var showCaseImgRightSide=$('.showcase .img-right-slide');
+	var companyDescriptionImgLeftSide=$('#companyDescription .img-left-slide');
+	var companyDescriptionImgRightSide=$('#companyDescription .img-right-slide');
 	
 	function moveImage(target){
-		$(target).animate({left:"0px",opacity:1},1000);
+		$(target).animate({left:"0px",opacity:1},800);
 	}
+	
 	setTimeout(function(){
-		moveImage(imgLeftSide)
-	},1000);
+		moveImage(companyDescriptionImgLeftSide)
+	},800);
 	setTimeout(function(){
-		moveImage(imgRightSide)
-	},1000);
+		moveImage(companyDescriptionImgRightSide)
+	},800);
+	setTimeout(function(){
+		$('#social-media ul > li > a > img').animate({width:'50px',height:'50px'},800);
+	},1800);
+
+	$(window).scroll( function () {
+		showCaseImgLeftSide.each ( function () {
+        	if ( ( $(this).offset().top - ($(this).height()*1.5) ) < $(window).scrollTop() )
+         		moveImage($(this));
+    	});
+   		showCaseImgRightSide.each ( function () {
+        	if ( ( $(this).offset().top - ($(this).height()*1.5) ) < $(window).scrollTop() )
+          		moveImage($(this));
+    	});
+    });
+
+
+
+
+	
+/**
+	$(window).on('scroll',function(){
+ 		if($(imgLeftSide).offset().top>400){
+ 				moveImage($(this));
+ 				alert($(this));
+ 				
+ 		}
+ 	});
+	
+
+	$(window).on('scroll',function(){
+ 		if($(this).scrollTop()>400){
+ 				moveImage(imgLeftSide);
+ 				moveImage(imgRightSide);
+ 		}
+ 	});
+
+
+	
 	/**
 	$("a").click(function(e){
  		e.preventDefault();
  		$('html,body').animate({scrollTop:$($(this).attr('href')).offset().top - $('.fixed-container-class').outerHeight()},1000);
 	});
 	**/
+
+
 	$("a").click(function(e){
 		
  		e.preventDefault();
@@ -32,8 +75,8 @@ $(document).ready(function(){
  	});
 
  	$('#social-media img').hover(function(){
- 		$(this).animate({width:"+=10px",height:"+=10px"},300);
+ 		$(this).animate({width:"+=5px",height:"+=5px"},200);
  	},function(){
- 		$(this).animate({width:"-=10px",height:"-=10px"},300);
+ 		$(this).animate({width:"-=5px",height:"-=5px"},200);
  	});
 });
